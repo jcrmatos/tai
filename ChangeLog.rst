@@ -1,6 +1,13 @@
+0.0.18 2015-05-03 ::
+
+    Removed images from the 1st line of README.rst because it was messing the PyPI 
+	description.
+
+	
 0.0.17 2015-05-03 ::
 
     Added build system.
+	Changed name from technical_indicators to tai.
 
 	
 0.0.16 2014-06-03 ::

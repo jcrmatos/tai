@@ -1,8 +1,3 @@
-.. image:: https://travis-ci.org/jcrmatos/tai.svg?branch=master
-    :target: https://travis-ci.org/jcrmatos/tai
-.. image:: https://api.shippable.com/projects/550794cf5ab6cc13529f2fa2/badge?branchName=master
-    :target: https://app.shippable.com/projects/550794cf5ab6cc13529f2fa2/builds/latest
-
 tai
 ===
 

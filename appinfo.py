@@ -32,7 +32,7 @@ import datetime as dt
 
 
 APP_NAME = 'tai'
-APP_VERSION = '0.0.17'
+APP_VERSION = '0.0.18'
 APP_LICENSE = 'GNU General Public License v2 or later (GPLv2+)'
 APP_AUTHOR = 'Joao Carlos Roseta Matos'
 APP_EMAIL = 'jcrmatos@gmail.com'
