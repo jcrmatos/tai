@@ -1,0 +1,11 @@
+language: python
+python:
+  - "2.7"
+  - "3.4"
+install: pip install --use-mirrors -r requirements.txt
+script:
+  py.test --cov tai test/
+notifications:
+  email:
+    on_success: always
+    on_failure: always
