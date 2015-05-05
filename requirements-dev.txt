@@ -2,6 +2,8 @@ flake8
 future
 py2exe
 pylint
+pytest
+pytest-cov
 Sphinx
 twine
 wheel

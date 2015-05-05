@@ -45,7 +45,7 @@ echo build src        builds sdist (zip on Windows, tar.gz on GNU Linux in the f
 echo build test       run tests
 echo build whl        builds bdist_wheel (whl)
 echo.
-echo See requirements-dev.txt for build requirements.
+echo Before runnning build.cmd for the first time, you should execute pip install -r requirements-dev.txt to install it's requirements.
 echo.
 goto :EXIT
 
@@ -117,7 +117,7 @@ del py_ver.txt
 
 :CHECKERS
 echo.
-echo *** Checkers
+echo *** PEP8 checker
 echo.
 
 for %%a in (%PROJECT%\*.py) do flake8 %%a
@@ -131,7 +131,7 @@ pause
 if "%CHECK_PY3_COMPATIBILITY%"=="" goto :NO_CHECK_PY3_COMPAT
 
 echo.
-echo *** Py3 compat checkers
+echo *** Python 3 compatibility checker
 echo.
 for %%a in (%PROJECT%\*.py) do pylint -r n --py3k %%a
 echo.

@@ -260,8 +260,6 @@ def change_sphinx_theme():
             elif "html_theme = 'alabaster'" in line and sphinx_ver < 131:
                 new_text += "html_theme = 'default'\n"
                 changed = True
-            elif 'html_theme = ' in line:
-                break
             else:
                 new_text += line
 

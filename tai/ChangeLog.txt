@@ -1,3 +1,8 @@
+0.0.19 2015-05-05 ::
+
+    Corrected requirements-dev.txt.
+
+
 0.0.18 2015-05-03 ::
 
     Removed images from the 1st line of README.rst because it was messing the PyPI 
