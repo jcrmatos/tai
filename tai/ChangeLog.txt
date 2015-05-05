@@ -1,3 +1,8 @@
+0.0.20 2015-05-05 ::
+
+    Updated Travis and Shippable files.
+
+	
 0.0.19 2015-05-05 ::
 
     Corrected requirements-dev.txt.

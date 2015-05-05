@@ -2,9 +2,10 @@ language: python
 python:
   - "2.7"
   - "3.4"
-install: pip install --use-mirrors -r requirements.txt
+install: pip install -r requirements.txt
+install: pip install -r requirements-dev.txt
 script:
-  py.test --cov tai test/
+  py.test --cov-report term-missing --cov tai test
 notifications:
   email:
     on_success: always
