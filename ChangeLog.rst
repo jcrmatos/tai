@@ -1,3 +1,9 @@
+0.0.23 2015-05-09 ::
+
+    Updated Travis and Shippable files.
+	Added appveyor config.
+
+	
 0.0.22 2015-05-05 ::
 
     Updated Travis and Shippable files.

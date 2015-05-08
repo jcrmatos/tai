@@ -4,15 +4,24 @@
 """Unittest for tai."""
 
 # Python 3 compatibility
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-import sys, os
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
+# import io  # Python 3 compatibility
+import os
+import unittest
+import sys
+
+# from builtins import input  # Python 3 compatibility
+import numpy as np
+
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
 
 import tai.tai as tai
-import numpy as np
-import unittest
+
 
 class TestSequenceFunctions(unittest.TestCase):
 
@@ -32,7 +41,7 @@ class TestSequenceFunctions(unittest.TestCase):
                                     -6.34389154, -7.85923013, -6.20834146,
                                     -4.31308173, -3.24341092],
                                    rtol=1e-09, atol=1e-09)
-        
+
 
     def test_rsi(self):
         prices = np.array([44.55, 44.3,  44.36, 43.82, 44.46, 44.96, 45.23,
@@ -115,7 +124,7 @@ class TestSequenceFunctions(unittest.TestCase):
                            22.43, 22.24, 22.29, 22.15, 22.39, 22.38, 22.61,
                            23.36, 24.05, 23.75, 23.83, 23.95, 23.63, 23.82,
                            23.87, 23.65, 23.19, 23.10, 23.33, 22.68, 23.10,
-                           22.40, 22.17])                                   
+                           22.40, 22.17])
         np.testing.assert_allclose(tai.ema(prices, period=10, ema_type=2),
                                    [22.28588695, 22.174706,   22.35085492,
                                     22.37470018, 22.5672175,  23.21585701,

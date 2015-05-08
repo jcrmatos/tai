@@ -22,18 +22,16 @@
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-# sometimes py2exe or sdist return a Unicode error if the line below isn't
-# commented, which is very strange
-# from __future__ import unicode_literals
+from __future__ import unicode_literals
 
-# import builtins  # Python 3 compatibility
 import datetime as dt
-# import future  # Python 3 compatibility
 # import io  # Python 3 compatibility
+
+# from builtins import input  # Python 3 compatibility
 
 
 APP_NAME = 'tai'
-APP_VERSION = '0.0.22'
+APP_VERSION = '0.0.23'
 APP_LICENSE = 'GNU General Public License v2 or later (GPLv2+)'
 APP_AUTHOR = 'Joao Carlos Roseta Matos'
 APP_EMAIL = 'jcrmatos@gmail.com'

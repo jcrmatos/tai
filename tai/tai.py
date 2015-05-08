@@ -43,10 +43,9 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-# import builtins  # Python 3 compatibility
-# import future  # Python 3 compatibility
 # import io  # Python 3 compatibility
 
+# from builtins import input  # Python 3 compatibility
 import numpy as np
 
 

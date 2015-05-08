@@ -4,15 +4,23 @@
 """Pytest for tai."""
 
 # Python 3 compatibility
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-import sys, os
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
+# import io  # Python 3 compatibility
+import os
+import sys
+
+# from builtins import input  # Python 3 compatibility
+import numpy as np
+import pytest
+
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
 
 import tai.tai as tai
-import numpy as np
-import pytest
 
 
 def test_roc():

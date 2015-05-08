@@ -22,37 +22,36 @@
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-# sometimes py2exe requires the following import to be commented in this file
-# or in this file and appinfo
-from __future__ import unicode_literals
+# the following line must be commmented due to random Unicode errors
+# comment the same line in appinfo.py
+# from __future__ import unicode_literals
 
-# import builtins  # Python 3 compatibility
-# import future  # Python 3 compatibility
 import glob
 import io  # Python 3 compatibility
 import os
 import sys
 
+# from builtins import input  # Python 3 compatibility
 import setuptools
 import py2exe  # must be after setuptools
 
 import appinfo
 
 
-SYS_ENC = sys.getfilesystemencoding()
+UTF_ENC = 'utf-8'
 
 DESC = LONG_DESC = ''
 if os.path.isfile(appinfo.README_FILE):
-    with io.open(appinfo.README_FILE, encoding=SYS_ENC) as file_:
-        LONG_DESC = file_.read()
+    with io.open(appinfo.README_FILE, encoding=UTF_ENC) as f_in:
+        LONG_DESC = f_in.read()
         DESC = LONG_DESC.split('\n')[3]
 
 # PACKAGES = [appinfo.APP_NAME]  # use only if find_packages() doesn't work
 
 REQUIREMENTS = ''
 if os.path.isfile(appinfo.REQUIREMENTS_FILE):
-    with io.open(appinfo.REQUIREMENTS_FILE, encoding=SYS_ENC) as file_:
-        REQUIREMENTS = file_.read().splitlines()
+    with io.open(appinfo.REQUIREMENTS_FILE, encoding=UTF_ENC) as f_in:
+        REQUIREMENTS = f_in.read().splitlines()
 
 PATH = appinfo.APP_NAME + '/'
 SCRIPT = PATH + appinfo.APP_NAME + '.py'
@@ -68,39 +67,9 @@ if os.path.isdir(appinfo.APP_NAME + '/doc'):
                           'doc/_modules/*.*')),
                          ('doc/_sources', glob.glob(PATH +
                           'doc/_sources/*.*')),
-                         ('doc/_static', glob.glob(PATH + 'doc/_static/*.*')),
-                         ('template', glob.glob(PATH + 'template/.*') +
-                          glob.glob(PATH + 'template/*.yml') +
-                          glob.glob(PATH + 'template/*.py') +
-                          glob.glob(PATH + 'template/*.rst') +
-                          glob.glob(PATH + 'template/*.cmd') +
-                          glob.glob(PATH + 'template/*.in') +
-                          glob.glob(PATH + 'template/*.txt') +
-                          glob.glob(PATH + 'template/*.cfg') +
-                          glob.glob(PATH + 'template/*.ini')),
-                         ('template/APPLICATION_NAME',
-                          glob.glob(PATH + 'template/APPLICATION_NAME/*.*')),
-                         ('template/doc', glob.glob(PATH +
-                          'template/doc/*.*')),
-                         ('template/pythonhosted.org',
-                          glob.glob(PATH + 'template/pythonhosted.org/*.*'))]
+                         ('doc/_static', glob.glob(PATH + 'doc/_static/*.*'))]
 else:
-    DATA_FILES_PY2EXE = [('', glob.glob(PATH + '*.txt')),
-                         ('template', glob.glob(PATH + 'template/.*') +
-                          glob.glob(PATH + 'template/*.yml') +
-                          glob.glob(PATH + 'template/*.py') +
-                          glob.glob(PATH + 'template/*.rst') +
-                          glob.glob(PATH + 'template/*.cmd') +
-                          glob.glob(PATH + 'template/*.in') +
-                          glob.glob(PATH + 'template/*.txt') +
-                          glob.glob(PATH + 'template/*.cfg') +
-                          glob.glob(PATH + 'template/*.ini')),
-                         ('template/APPLICATION_NAME',
-                          glob.glob(PATH + 'template/APPLICATION_NAME/*.*')),
-                         ('template/doc', glob.glob(PATH +
-                          'template/doc/*.*')),
-                         ('template/pythonhosted.org',
-                          glob.glob(PATH + 'template/pythonhosted.org/*.*'))]
+    DATA_FILES_PY2EXE = [('', glob.glob(PATH + '*.txt'))]
 
 OPTIONS = {'py2exe': {'compressed': True,
                       'ascii': False,
