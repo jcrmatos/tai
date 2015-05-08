@@ -31,8 +31,7 @@ init:
 install:
   - "powershell appveyor\\install.ps1"
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-#  - "pip install twine pytest pytest-cov Sphinx"
-  - "pip install -r requirements-dev.txt"
+  - "pip install twine pytest pytest-cov Sphinx"
   - "pip install -r requirements.txt"
 
 build: off

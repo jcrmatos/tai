@@ -1,3 +1,8 @@
+0.0.24 2015-05-09 ::
+
+    Corrected Travis, Shippable and Appveyor files.
+
+	
 0.0.23 2015-05-09 ::
 
     Updated Travis and Shippable files.
