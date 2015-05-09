@@ -8,20 +8,20 @@ environment:
 
   matrix:
     - PYTHON: "C:\\Python27"
-      PYTHON_VERSION: "2.7.8"
+      PYTHON_VERSION: "2.7.9"
       PYTHON_ARCH: "32"
 
     - PYTHON: "C:\\Python34"
-      PYTHON_VERSION: "3.4.1"
+      PYTHON_VERSION: "3.4.3"
       PYTHON_ARCH: "32"
 
     - PYTHON: "C:\\Python27-x64"
-      PYTHON_VERSION: "2.7.8"
+      PYTHON_VERSION: "2.7.9"
       PYTHON_ARCH: "64"
       WINDOWS_SDK_VERSION: "v7.0"
 
     - PYTHON: "C:\\Python34-x64"
-      PYTHON_VERSION: "3.4.1"
+      PYTHON_VERSION: "3.4.3"
       PYTHON_ARCH: "64"
       WINDOWS_SDK_VERSION: "v7.1"
 
@@ -37,14 +37,13 @@ install:
 build: off
 
 test_script:
-#  - "%WITH_COMPILER% %PYTHON%/python py.test --junitxml=test.xml --cov tai -v test"
-  - "%WITH_COMPILER% py.test --junitxml=test.xml --cov-report term-missing --cov tai -v test"
+#  - "%WITH_COMPILER% %PYTHON%/python py.test --junitxml=tests_results.xml --cov tai -v test"
+  - "%WITH_COMPILER% py.test --junitxml=tests_results.xml --cov-report term-missing --cov tai -v test"
 #  - "%WITH_COMPILER% %PYTHON%/python setup.py test"
 
 after_test:
   # upload results to AppVeyor
-  $wc = New-Object 'System.Net.WebClient'
-  $wc.UploadFile("https://ci.appveyor.com/api/testresults/xunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test.xml))
+  - "powershell appveyor\\upload_tests_results.ps1"
 #  - "%WITH_COMPILER% %PYTHON%/python setup.py sdist bdist_wheel"
 #  - "pip install dist/*"
 

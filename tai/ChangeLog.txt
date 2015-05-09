@@ -1,3 +1,9 @@
+0.0.28 2015-05-09 ::
+
+    Corrected appveyor.yml.
+	Updated to Py 2.7.9 and Py 3.4.3 in appveyor.yml.
+
+
 0.0.27 2015-05-09 ::
 
     Added pypy and pyp3 to .travis.yml.
