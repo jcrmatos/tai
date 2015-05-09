@@ -1,3 +1,8 @@
+0.0.25 2015-05-09 ::
+
+    Corrected appveyor.yml.
+
+
 0.0.24 2015-05-09 ::
 
     Corrected Travis, Shippable and Appveyor files.

@@ -38,7 +38,7 @@ build: off
 
 test_script:
 #  - "%WITH_COMPILER% %PYTHON%/python py.test --cov tai test"
-  - "%WITH_COMPILER% %PYTHON%/python py.test --cov-report term-missing --cov tai test"
+  - "%WITH_COMPILER% py.test --cov-report term-missing --cov tai test"
 #  - "%WITH_COMPILER% %PYTHON%/python setup.py test"
 
 after_test:
