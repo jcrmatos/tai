@@ -1,3 +1,8 @@
+0.0.26 2015-05-09 ::
+
+    Added notifications to appveyor.yml.
+
+
 0.0.25 2015-05-09 ::
 
     Corrected appveyor.yml.
