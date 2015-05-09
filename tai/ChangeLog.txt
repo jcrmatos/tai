@@ -1,3 +1,10 @@
+0.0.29 2015-05-09 ::
+
+    Corrected appveyor.yml.
+	Commented pypy and pypy3 builds in .travis.yml until numpy
+	build problem is resolved.
+
+
 0.0.28 2015-05-09 ::
 
     Corrected appveyor.yml.

@@ -37,18 +37,17 @@ install:
 build: off
 
 test_script:
-#  - "%WITH_COMPILER% %PYTHON%/python py.test --junitxml=tests_results.xml --cov tai -v test"
-  - "%WITH_COMPILER% py.test --junitxml=tests_results.xml --cov-report term-missing --cov tai -v test"
+#  - "%WITH_COMPILER% %PYTHON%/python py.test --cov tai -v test"
+  - "%WITH_COMPILER% py.test --cov-report term-missing --cov tai -v test"
 #  - "%WITH_COMPILER% %PYTHON%/python setup.py test"
 
 after_test:
-  # upload results to AppVeyor
-  - "powershell appveyor\\upload_tests_results.ps1"
-#  - "%WITH_COMPILER% %PYTHON%/python setup.py sdist bdist_wheel"
+  - "%WITH_COMPILER% %PYTHON%/python setup.py sdist bdist_wheel"
+  - "%WITH_COMPILER% %PYTHON%/python -V"
 #  - "pip install dist/*"
 
-#artifacts:
-#  - path: dist\*
+artifacts:
+  - path: dist\*
 
 #on_success:
 #  - "%WITH_COMPILER% %PYTHON%/python setup.py register -r pypi"
@@ -57,8 +56,6 @@ after_test:
 
 notifications:
   - provider: Email
-    to:
-      - jcrmatos@gmail.com
     on_build_success: true
     on_build_failure: true
 #    on_build_status_changed: true
