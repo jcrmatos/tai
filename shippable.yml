@@ -5,7 +5,7 @@ python:
 before_install: pip install pytest-cov
 install: pip install -r requirements.txt
 before_script: mkdir -p shippable/codecoverage shippable/testresults
-script: py.test --cov-report term-missing --cov tai test
+script: py.test --junitxml=shippable/testresults/test.xml --cov-report term-missing --cov tai -v test
 notifications:
   email:
     on_success: always

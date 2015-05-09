@@ -37,16 +37,19 @@ install:
 build: off
 
 test_script:
-#  - "%WITH_COMPILER% %PYTHON%/python py.test --cov tai test"
-  - "%WITH_COMPILER% py.test --cov-report term-missing --cov tai test"
+#  - "%WITH_COMPILER% %PYTHON%/python py.test --junitxml=test.xml --cov tai -v test"
+  - "%WITH_COMPILER% py.test --junitxml=test.xml --cov-report term-missing --cov tai -v test"
 #  - "%WITH_COMPILER% %PYTHON%/python setup.py test"
 
 after_test:
-  - "%WITH_COMPILER% %PYTHON%/python setup.py sdist bdist_wheel"
+  # upload results to AppVeyor
+  $wc = New-Object 'System.Net.WebClient'
+  $wc.UploadFile("https://ci.appveyor.com/api/testresults/xunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test.xml))
+#  - "%WITH_COMPILER% %PYTHON%/python setup.py sdist bdist_wheel"
 #  - "pip install dist/*"
 
-artifacts:
-  - path: dist\*
+#artifacts:
+#  - path: dist\*
 
 #on_success:
 #  - "%WITH_COMPILER% %PYTHON%/python setup.py register -r pypi"
@@ -54,11 +57,9 @@ artifacts:
 #  - "if exist tai\\doc %WITH_COMPILER% %PYTHON%/python setup.py register upload_docs --upload-dir=tai\\doc"
 
 notifications:
-- provider: Email
-  to:
-  - jcrmatos@gmail.com
-  subject: AppVeyor status
-  on_build_success: true
-  on_build_failure: true
-  on_build_status_changed: true
- 
+  - provider: Email
+    to:
+      - jcrmatos@gmail.com
+    on_build_success: true
+    on_build_failure: true
+#    on_build_status_changed: true

@@ -312,9 +312,6 @@ goto :MSG
 echo.
 echo *****
 echo If there were filesystem errors (eg. directory not empty), random syntax or Unicode errors, try repeating the build up to 3 times.
-echo One other option for Unicode errors is to do one of these:
-echo      1. Comment the line from __future__ import unicode_literals in appinfo.py and build again;
-echo      2. Comment the line from __future__ import unicode_literals in appinfo.py, build, remove the comment and build again.
 echo.
 goto :EXIT
 

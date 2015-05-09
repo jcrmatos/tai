@@ -2,9 +2,11 @@ language: python
 python:
   - "2.7"
   - "3.4"
+  - "pypy"
+  - "pypy3"
 before_install: pip install pytest-cov
 install: pip install -r requirements.txt
-script: py.test --cov-report term-missing --cov tai test
+script: py.test --cov-report term-missing --cov tai -v test
 notifications:
   email:
     on_success: always

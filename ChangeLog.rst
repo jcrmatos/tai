@@ -1,3 +1,9 @@
+0.0.27 2015-05-09 ::
+
+    Added pypy and pyp3 to .travis.yml.
+	Added test results to shippable.yml and appveyor.yml.
+
+
 0.0.26 2015-05-09 ::
 
     Added notifications to appveyor.yml.
