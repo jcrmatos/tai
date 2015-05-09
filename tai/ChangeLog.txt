@@ -1,3 +1,8 @@
+0.0.30 2015-05-09 ::
+
+    Corrected appveyor.yml.
+
+
 0.0.29 2015-05-09 ::
 
     Corrected appveyor.yml.

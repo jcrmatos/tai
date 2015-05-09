@@ -34,17 +34,19 @@ install:
   - "pip install twine pytest pytest-cov Sphinx"
   - "pip install -r requirements.txt"
 
+# It's off because it doesn't apply to Python
 build: off
 
 test_script:
+#  - "%WITH_COMPILER% %PYTHON%/python setup.py test"
 #  - "%WITH_COMPILER% %PYTHON%/python py.test --cov tai -v test"
   - "%WITH_COMPILER% py.test --cov-report term-missing --cov tai -v test"
-#  - "%WITH_COMPILER% %PYTHON%/python setup.py test"
 
 after_test:
   - "%WITH_COMPILER% %PYTHON%/python setup.py sdist bdist_wheel"
-  - "%WITH_COMPILER% %PYTHON%/python -V"
 #  - "pip install dist/*"
+  # check  Python version
+  - "%WITH_COMPILER% %PYTHON%/python -V"
 
 artifacts:
   - path: dist\*
@@ -56,6 +58,8 @@ artifacts:
 
 notifications:
   - provider: Email
+    to:
+      - jcrmatos@gmail.com
     on_build_success: true
     on_build_failure: true
 #    on_build_status_changed: true
