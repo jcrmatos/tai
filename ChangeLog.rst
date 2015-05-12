@@ -1,3 +1,9 @@
+0.0.44 2015-05-12 ::
+
+    Changed .travis.yml to allow pypy to build with a special version of 
+	numpy.
+
+
 0.0.43 2015-05-12 ::
 
     Corrected error in .travis.yml.
