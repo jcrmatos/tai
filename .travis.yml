@@ -2,14 +2,13 @@ language: python
 python:
   - "2.7"
   - "3.4"
-  allow_failures:
-    - "pypy"
-    - "pypy3"
+  - "pypy"
+  #- "pypy3"
 before_install: pip install pytest-cov
 install:
-  [[ $TRAVIS_PYTHON_VERSION != pypy && $TRAVIS_PYTHON_VERSION != pypy3 ]] && pip install -r requirements.txt
-  [[ $TRAVIS_PYTHON_VERSION = pypy || $TRAVIS_PYTHON_VERSION = pypy3 ]] && pip install pypy-dev
-  [[ $TRAVIS_PYTHON_VERSION = pypy || $TRAVIS_PYTHON_VERSION = pypy3 ]] && pip install git+https://bitbucket.org/pypy/numpy.git
+  - "[[ $TRAVIS_PYTHON_VERSION != pypy ]] && pip install -r requirements.txt"
+  - "[[ $TRAVIS_PYTHON_VERSION = pypy ]] && pip install pypy-dev"
+  - "[[ $TRAVIS_PYTHON_VERSION = pypy ]] && pip install git+https://bitbucket.org/pypy/numpy.git"
 script: py.test --cov-report term-missing --cov tai -v test
 notifications:
   email:
