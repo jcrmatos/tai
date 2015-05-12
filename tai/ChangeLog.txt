@@ -1,3 +1,8 @@
+0.0.32 2015-05-12 ::
+
+    Corrected errors in .travis.yml and appveyor.yml.
+
+	
 0.0.31 2015-05-12 ::
 
     Changed .travis.yml to allow pypy and pypy3 builds to fail.

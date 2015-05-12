@@ -20,11 +20,11 @@ environment:
       PYTHON_ARCH: "64"
       WINDOWS_SDK_VERSION: "v7.0"
 	  
-# commented until numpy build problem is solved
-#    - PYTHON: "C:\\Python34-x64"
-#      PYTHON_VERSION: "3.4.3"
-#      PYTHON_ARCH: "64"
-#      WINDOWS_SDK_VERSION: "v7.1"
+    # commented until numpy build problem is solved
+    #- PYTHON: "C:\\Python34-x64"
+    #  PYTHON_VERSION: "3.4.3"
+    #  PYTHON_ARCH: "64"
+    #  WINDOWS_SDK_VERSION: "v7.1"
 
 init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
@@ -39,13 +39,13 @@ install:
 build: off
 
 test_script:
-#  - "%WITH_COMPILER% %PYTHON%/python setup.py test"
-#  - "%WITH_COMPILER% %PYTHON%/python py.test --cov tai -v test"
+  #- "%WITH_COMPILER% %PYTHON%/python setup.py test"
+  #- "%WITH_COMPILER% %PYTHON%/python py.test --cov tai -v test"
   - "%WITH_COMPILER% py.test --cov-report term-missing --cov tai -v test"
 
 after_test:
   - "%WITH_COMPILER% %PYTHON%/python setup.py sdist bdist_wheel"
-#  - "pip install dist/*"
+  #- "pip install dist/*"
   # check  Python version
   - "%WITH_COMPILER% %PYTHON%/python -V"
 
@@ -63,4 +63,4 @@ notifications:
       - jcrmatos@gmail.com
     on_build_success: true
     on_build_failure: true
-#    on_build_status_changed: true
+    #on_build_status_changed: true
