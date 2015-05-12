@@ -19,12 +19,9 @@
 """Setup for py2exe."""
 
 # Python 3 compatibility
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-# the following line must be commmented due to random Unicode errors
-# comment the same line in appinfo.py
-# from __future__ import unicode_literals
+from __future__ import (absolute_import, division, print_function,
+                        )  # unicode_literals)
+# the previous import is commented due to random Unicode errors
 
 import glob
 import io  # Python 3 compatibility
@@ -32,7 +29,7 @@ import os
 import sys
 
 # from builtins import input  # Python 3 compatibility
-import setuptools
+from setuptools import setup, find_packages
 import py2exe  # must be after setuptools
 
 import appinfo
@@ -56,20 +53,17 @@ if os.path.isfile(appinfo.REQUIREMENTS_FILE):
 PATH = appinfo.APP_NAME + '/'
 SCRIPT = PATH + appinfo.APP_NAME + '.py'
 
+DATA_FILES = [('', glob.glob(PATH + '*.txt'))]
+
 if os.path.isdir(appinfo.APP_NAME + '/doc'):
-    DATA_FILES_PY2EXE = [('', glob.glob(PATH + '*.txt')),
-                         ('doc', glob.glob(PATH + 'doc/.*') +
-                          glob.glob(PATH + 'doc/*.html') +
-                          glob.glob(PATH + 'doc/*.pdf') +
-                          glob.glob(PATH + 'doc/*.inv') +
-                          glob.glob(PATH + 'doc/*.js')),
-                         ('doc/_modules', glob.glob(PATH +
-                          'doc/_modules/*.*')),
-                         ('doc/_sources', glob.glob(PATH +
-                          'doc/_sources/*.*')),
-                         ('doc/_static', glob.glob(PATH + 'doc/_static/*.*'))]
-else:
-    DATA_FILES_PY2EXE = [('', glob.glob(PATH + '*.txt'))]
+    DATA_FILES += [('doc', glob.glob(PATH + 'doc/.*') +
+                    glob.glob(PATH + 'doc/*.html') +
+                    glob.glob(PATH + 'doc/*.pdf') +
+                    glob.glob(PATH + 'doc/*.inv') +
+                    glob.glob(PATH + 'doc/*.js')),
+                   ('doc/_modules', glob.glob(PATH + 'doc/_modules/*.*')),
+                   ('doc/_sources', glob.glob(PATH + 'doc/_sources/*.*')),
+                   ('doc/_static', glob.glob(PATH + 'doc/_static/*.*'))]
 
 OPTIONS = {'py2exe': {'compressed': True,
                       'ascii': False,
@@ -88,37 +82,32 @@ OPTIONS = {'py2exe': {'compressed': True,
 # in py2exe library
 sys.path.insert(1, appinfo.APP_NAME)
 
-setuptools.setup(name=appinfo.APP_NAME,
-                 version=appinfo.APP_VERSION,
-                 description=DESC,
-                 long_description=LONG_DESC,
-                 license=appinfo.APP_LICENSE,
-                 url=appinfo.APP_URL,
-                 author=appinfo.APP_AUTHOR,
-                 author_email=appinfo.APP_EMAIL,
+setup(name=appinfo.APP_NAME,
+      version=appinfo.APP_VERSION,
+      description=DESC,
+      long_description=LONG_DESC,
+      license=appinfo.APP_LICENSE,
+      url=appinfo.APP_URL,
+      author=appinfo.APP_AUTHOR,
+      author_email=appinfo.APP_EMAIL,
 
-                 classifiers=appinfo.CLASSIFIERS,
-                 keywords=appinfo.APP_KEYWORDS,
+      classifiers=appinfo.CLASSIFIERS,
+      keywords=appinfo.APP_KEYWORDS,
 
-                 packages=setuptools.find_packages(),
-                 # packages=setuptools.find_packages(exclude=['docs',
-                 #                                           'tests*']),
+      packages=find_packages(),
+      # packages=setuptools.find_packages(exclude=['docs',
+      #                                           'tests*']),
 
-                 # use only if find_packages() doesn't work
-                 # packages=PACKAGES,
-                 # package_dir={'': appinfo.APP_NAME},
+      # use only if find_packages() doesn't work
+      # packages=PACKAGES,
+      # package_dir={'': appinfo.APP_NAME},
 
-                 install_requires=REQUIREMENTS,
+      install_requires=REQUIREMENTS,
 
-                 # used only if the package is not in PyPI, but exists as an
-                 # egg, sdist format or as a single .py file
-                 # see http://peak.telecommunity.com/DevCenter/setuptools#dependencies-that-aren-t-in-pypi
-                 # dependency_links = ['http://host.domain.local/dir/'],
-
-                 console=[SCRIPT],
-                 options=OPTIONS,
-                 data_files=DATA_FILES_PY2EXE,
-                 # windows=[{'script': appinfo.APP_NAME + '.py',
-                 #           'icon_resources': [(0, appinfo.APP_NAME + '.ico')]
-                 #          }],
-                 )
+      console=[SCRIPT],
+      options=OPTIONS,
+      data_files=DATA_FILES,
+      # windows=[{'script': appinfo.APP_NAME + '.py',
+      #           'icon_resources': [(0, appinfo.APP_NAME + '.ico')]
+      #          }],
+      )

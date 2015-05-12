@@ -19,10 +19,8 @@
 """Setup utils library."""
 
 # Python 3 compatibility
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
 
 import datetime as dt
 import glob
@@ -126,18 +124,15 @@ def sleep(seconds=5):
 
 def app_name():
     """Write application name to text file."""
-    #with open('app_name.txt', 'w') as f_out:
     with io.open('app_name.txt', 'w', encoding=UTF_ENC) as f_out:
         f_out.write(appinfo.APP_NAME, )
 
 
 def app_ver():
     """Write application version to text file if equal to ChangeLog.rst."""
-    #with open('ChangeLog.rst') as f_in:
     with io.open('ChangeLog.rst', encoding=UTF_ENC) as f_in:
         changelog_app_ver = f_in.readline().split()[0]
     if changelog_app_ver == appinfo.APP_VERSION:
-        #with open('app_ver.txt', 'w') as f_out:
         with io.open('app_ver.txt', 'w', encoding=UTF_ENC) as f_out:
             f_out.write(appinfo.APP_VERSION)
     else:
@@ -146,14 +141,12 @@ def app_ver():
 
 def app_type():
     """Write application type (application or module) to text file."""
-    #with open('app_type.txt', 'w') as f_out:
     with io.open('app_type.txt', 'w', encoding=UTF_ENC) as f_out:
         f_out.write(appinfo.APP_TYPE)
 
 
 def py_ver():
     """Write Python version to text file."""
-    #with open('py_ver.txt', 'w') as f_out:
     with io.open('py_ver.txt', 'w', encoding=UTF_ENC) as f_out:
         f_out.write(str(sys.version_info.major) + '.' +
                     str(sys.version_info.minor))
@@ -229,10 +222,12 @@ def upd_usage_in_readme():
 
         new_text = ''
         usage_section = False
+        changed = False
         for line in text:
             if 'usage: ' in line:  # usage section start
                 usage_section = True
                 new_text += usage_text + '\n'
+                changed = True
             elif usage_section and 'Resources' not in line:
                 # bypass old usage section
                 continue
@@ -242,8 +237,9 @@ def upd_usage_in_readme():
             else:
                 new_text += line
 
-        with io.open('README.rst', 'w', encoding=UTF_ENC) as f_out:
-            f_out.writelines(new_text)
+        if changed:
+            with io.open('README.rst', 'w', encoding=UTF_ENC) as f_out:
+                f_out.writelines(new_text)
 
 
 def change_sphinx_theme():
@@ -282,8 +278,8 @@ def comment_import_for_py2exe(filename):
 
     new_text = ''
     for line in text:
-        if 'from __future__ import unicode_literals' in line:
-            new_text += '# from __future__ import unicode_literals\n'
+        if '                        unicode_literals)' in line:
+            new_text += '                        )  # unicode_literals)\n'
         else:
             new_text += line
 
@@ -298,13 +294,54 @@ def uncomment_import_for_py2exe(filename):
 
     new_text = ''
     for line in text:
-        if '# from __future__ import unicode_literals' in line:
-            new_text += 'from __future__ import unicode_literals\n'
+        if '                        )  # unicode_literals)' in line:
+            new_text += '                        unicode_literals)\n'
         else:
             new_text += line
 
     with io.open(filename, 'w', encoding=UTF_ENC) as f_out:
         f_out.writelines(new_text)
+
+
+def collect_to_do():
+    """Collect To do from all py files."""
+    files = glob.glob(appinfo.APP_NAME + '/*.py')
+    to_do_lst = []
+    for filename in files:
+        with io.open(filename, encoding=UTF_ENC) as f_in:
+            text = f_in.readlines()
+        for line in text:
+            if '# ToDo: ' in line:
+                to_do_lst.append(filename.split(os.sep)[-1] + ': ' +
+                                 line.replace('# ToDo: ', '').lstrip())
+
+    to_do_text = ''
+    for item in to_do_lst:
+        to_do_text += item
+
+    with io.open('README.rst', encoding=UTF_ENC) as f_in:
+        text = f_in.readlines()
+
+    new_text = ''
+    to_do_section = False
+    changed = False
+    for line in text:
+        if '**To do**' in line:  # to do section start
+            to_do_section = True
+            new_text += '**To do**\n\n' + to_do_text + '\n'
+            changed = True
+        elif to_do_section and 'Installation' not in line:
+            # bypass old to do section
+            continue
+        elif to_do_section and 'Installation' in line:  # to do section end
+            to_do_section = False
+            new_text += line
+        else:
+            new_text += line
+
+    if changed:
+        with io.open('README.rst', 'w', encoding=UTF_ENC) as f_out:
+            f_out.writelines(new_text)
 
 
 # def std_lib_modules():

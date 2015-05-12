@@ -22,6 +22,15 @@ This module was done and tested under Windows with Python 2.7.3 and numpy 1.6.1.
     Simple Moving Average (SMA), Weighted Moving Average (WMA), Exponential Moving Average (EMA)
     Bollinger Bands (BB), Bollinger Bandwidth, %B
 
+Installation
+------------
+
+**Installation**
+
+.. code:: bash
+
+    $ pip install tai
+	
 Resources and contributing
 --------------------------
 

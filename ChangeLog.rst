@@ -1,3 +1,14 @@
+0.0.31 2015-05-12 ::
+
+    Changed .travis.yml to allow pypy and pypy3 builds to fail.
+	Changed .travis.yml to test numpy for pypy.
+	Commented Py3 x64 build in appveyor.yml due to problems with numpy.
+	Corrected some URLs and used URL shortener.
+	Corrected some imports in doctests.
+	Simplified0 PYTHONPATH insert in test files.
+	Removed py2exe from requirements-dev.txt.
+
+
 0.0.30 2015-05-09 ::
 
     Corrected appveyor.yml.

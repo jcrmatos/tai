@@ -38,10 +38,8 @@ numpy 1.6.1.
 """
 
 # Python 3 compatibility
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
 
 # import io  # Python 3 compatibility
 
@@ -66,7 +64,7 @@ def roc(prices, period=21):
     ROC = [(Close - Close n periods ago) / (Close n periods ago)] * 100
 
     http://www.csidata.com/?page_id=797
-    http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:rate_of_change_roc_a
+    http://goo.gl/cpSWXg
 
     Input:
       prices ndarray
@@ -78,7 +76,7 @@ def roc(prices, period=21):
     Test:
 
     >>> import numpy as np
-    >>> import technical_indicators as tai
+    >>> import tai
     >>> prices = np.array([11045.27, 11167.32, 11008.61, 11151.83, 10926.77,
     ... 10868.12, 10520.32, 10380.43, 10785.14, 10748.26, 10896.91, 10782.95,
     ... 10620.16, 10625.83, 10510.95, 10444.37, 10068.01, 10193.39, 10066.57,
@@ -87,7 +85,6 @@ def roc(prices, period=21):
     [-3.84879682 -4.84888048 -4.52064339 -6.34389154 -7.85923013 -6.20834146
      -4.31308173 -3.24341092]
     """
-
     num_prices = len(prices)
 
     if num_prices < period:
@@ -134,7 +131,7 @@ def rsi(prices, period=14):
     Trading Systems.
 
     http://www.csidata.com/?page_id=797
-    http://stockcharts.com/help/doku.php?id=chart_school:technical_indicators:relative_strength_in
+    http://goo.gl/WlwNiW
 
     Input:
       prices ndarray
@@ -146,7 +143,7 @@ def rsi(prices, period=14):
     Test:
 
     >>> import numpy as np
-    >>> import technical_indicators as tai
+    >>> import tai
     >>> prices = np.array([44.55, 44.3, 44.36, 43.82, 44.46, 44.96, 45.23,
     ... 45.56, 45.98, 46.22, 46.03, 46.17, 45.75, 46.42, 46.42, 46.14, 46.17,
     ... 46.55, 46.36, 45.78, 46.35, 46.39, 45.85, 46.59, 45.92, 45.49, 44.16,
@@ -157,7 +154,6 @@ def rsi(prices, period=14):
       54.39159393  50.10513101  39.68712141  41.17273382  41.5859395
       45.21224077  37.06939108  32.85768734  37.58081218]
     """
-
     num_prices = len(prices)
 
     if num_prices < period:
@@ -221,9 +217,8 @@ def sma(prices, period):
     where K = n and Pn is the most recent price
 
     http://www.financialwebring.org/gummy-stuff/MA-stuff.htm
-
     http://www.csidata.com/?page_id=797
-    http://stockcharts.com/school/doku.php?st=moving+average&id=chart_school:technical_indicators:moving_averages
+    http://goo.gl/MlgHQu
 
     Input:
       prices ndarray
@@ -235,7 +230,7 @@ def sma(prices, period):
     Test:
 
     >>> import numpy as np
-    >>> import technical_indicators as tai
+    >>> import tai
     >>> prices = np.array([22.27, 22.19, 22.08, 22.17, 22.18, 22.13, 22.23,
     ... 22.43, 22.24, 22.29, 22.15, 22.39, 22.38, 22.61, 23.36, 24.05, 23.75,
     ... 23.83, 23.95, 23.63, 23.82, 23.87, 23.65, 23.19, 23.10, 23.33, 22.68,
@@ -245,7 +240,6 @@ def sma(prices, period):
       23.076  23.21   23.377  23.525  23.652  23.71   23.684  23.612  23.505
       23.432  23.277  23.131]
     """
-
     num_prices = len(prices)
 
     if num_prices < period:
@@ -282,11 +276,8 @@ def wma(prices, period):
     where w = 2 / (n + 1)
 
     http://www.csidata.com/?page_id=797
-
     http://www.financialwebring.org/gummy-stuff/MA-stuff.htm
-
     http://www.investopedia.com/terms/l/linearlyweightedmovingaverage.asp
-
     http://fxtrade.oanda.com/learn/forex-indicators/weighted-moving-average
 
     Input:
@@ -299,12 +290,11 @@ def wma(prices, period):
     Test:
 
     >>> import numpy as np
-    >>> import technical_indicators as tai
+    >>> import tai
     >>> prices = np.array([77, 79, 79, 81, 83, 49, 55])
     >>> print(tai.wma(prices, period=5))
     [ 80.73333333  70.46666667  64.06666667]
     """
-
     num_prices = len(prices)
 
     if num_prices < period:
@@ -374,9 +364,8 @@ def ema(prices, period, ema_type=0):
     and w = 2 / (N + 1)
 
     http://www.financialwebring.org/gummy-stuff/MA-stuff.htm
-
     http://www.csidata.com/?page_id=797
-    http://stockcharts.com/school/doku.php?st=moving+average&id=chart_school:technical_indicators:moving_averages
+    http://goo.gl/MlgHQu
 
     Input:
       prices ndarray
@@ -389,7 +378,7 @@ def ema(prices, period, ema_type=0):
     Tests:
 
     >>> import numpy as np
-    >>> import technical_indicators as tai
+    >>> import tai
     >>> prices = np.array([22.27, 22.19, 22.08, 22.17, 22.18, 22.13, 22.23,
     ... 22.43, 22.24, 22.29, 22.15, 22.39, 22.38, 22.61, 23.36, 24.05, 23.75,
     ... 23.83, 23.95, 23.63, 23.82, 23.87, 23.65, 23.19, 23.10, 23.33, 22.68,
@@ -415,7 +404,6 @@ def ema(prices, period, ema_type=0):
       23.13280996  23.29414649  22.79166223  23.04393782  22.51707883
       22.23310448]
     """
-
     num_prices = len(prices)
 
     if num_prices < period:
@@ -497,10 +485,7 @@ def ma_env(prices, period, percent, ma_type=0):
     Lower Envelope: MA - (MA x percent)
 
     http://www.csidata.com/?page_id=797
-
-    http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:moving_average_envel
-
-    http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:bollinger_band_perce
+    http://goo.gl/JH4mcq
 
     Input:
       prices ndarray
@@ -514,7 +499,7 @@ def ma_env(prices, period, percent, ma_type=0):
     Test:
 
     >>> import numpy as np
-    >>> import technical_indicators as tai
+    >>> import tai
     >>> prices = np.array([86.16, 89.09, 88.78, 90.32, 89.07, 91.15, 89.44,
     ... 89.18, 86.93, 87.68, 86.96, 89.43, 89.32, 88.72, 87.45, 87.26, 89.50,
     ... 87.90, 89.13, 90.70, 92.90, 92.98, 91.80, 92.66, 92.68, 92.30, 92.77,
@@ -546,7 +531,6 @@ def ma_env(prices, period, percent, ma_type=0):
      [ 100.2826       91.166        82.0494       18.2332        0.59948884]
      [ 100.15445      91.0495       81.94455      18.2099        0.54121385]]
     """
-
     num_prices = len(prices)
 
     if num_prices < period:
@@ -616,9 +600,8 @@ def bb(prices, period, num_std_dev=2.0):
     a 10-period SMA.
 
     http://www.csidata.com/?page_id=797
-    http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:bollinger_bands
-    http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:bollinger_band_width
-    http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:bollinger_band_perce
+    http://goo.gl/3pXmip
+    http://goo.gl/aMNs97
 
     Input:
       prices ndarray
@@ -631,7 +614,7 @@ def bb(prices, period, num_std_dev=2.0):
     Test:
 
     >>> import numpy as np
-    >>> import technical_indicators as tai
+    >>> import tai
     >>> prices = np.array([86.16, 89.09, 88.78, 90.32, 89.07, 91.15, 89.44,
     ... 89.18, 86.93, 87.68, 86.96, 89.43, 89.32, 88.72, 87.45, 87.26, 89.50,
     ... 87.90, 89.13, 90.70, 92.90, 92.98, 91.80, 92.66, 92.68, 92.30, 92.77,
@@ -685,7 +668,6 @@ def bb(prices, period, num_std_dev=2.0):
      [  9.41460689e+01   9.10495000e+01   8.79529311e+01   6.80194599e-02
         6.19313782e+00   6.21182512e-01]]
     """
-
     num_prices = len(prices)
 
     if num_prices < period:

@@ -97,6 +97,7 @@ python setup_utils.py update_copyright()
 
 :NO_COPYRIGHT_UPD
 python setup_utils.py upd_usage_in_readme()
+python setup_utils.py collect_to_do()
 
 copy /y README.rst %PROJECT%\README.txt > nul
 copy /y LICENSE.rst %PROJECT%\LICENSE.txt > nul
@@ -320,9 +321,10 @@ echo.
 echo *** CXF
 echo.
 echo Not working yet...
-rem python cxf_setup.py build bdist_msi
-rem python cxf_setup.py build_exe
-rem cxfreeze cxf_setup.py build_exe
+rem python setup_cxf.py build
+rem python setup_cxf.py build bdist_msi
+rem python setup_cxf.py build_exe
+rem cxfreeze setup_cxf.py build_exe
 rem echo.
 rem echo *** Copy datafiles
 rem echo.

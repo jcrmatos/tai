@@ -16,17 +16,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Setup for source, egg, wheel, wininst, msi and dumb distributions."""
+"""Setup for cx-Freeze."""
 
 # Python 3 compatibility
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
+import glob
 import io  # Python 3 compatibility
 import os
+import sys
 
 # from builtins import input  # Python 3 compatibility
-from setuptools import setup, find_packages
+from cx_Freeze import setup, Executable
 
 import appinfo
 
@@ -39,19 +41,33 @@ if os.path.isfile(appinfo.README_FILE):
         LONG_DESC = f_in.read()
         DESC = LONG_DESC.split('\n')[3]
 
-# PACKAGES = [appinfo.APP_NAME]  # use only if find_packages() doesn't work
+PATH = appinfo.APP_NAME + '/'
+SCRIPT = PATH + appinfo.APP_NAME + '.py'
+TARGET_NAME = appinfo.APP_NAME + '.exe'
 
-REQUIREMENTS = ''
-if os.path.isfile(appinfo.REQUIREMENTS_FILE):
-    with io.open(appinfo.REQUIREMENTS_FILE, encoding=UTF_ENC) as f_in:
-        REQUIREMENTS = f_in.read().splitlines()
+DATA_FILES = glob.glob(PATH + '*.txt')
 
-ENTRY_POINTS = {'console_scripts': [appinfo.APP_NAME + '=' +
-                                    appinfo.APP_NAME + '.' +
-                                    appinfo.APP_NAME + ':main'],
-                # 'gui_scripts' : ['app_gui=' + appinfo.APP_NAME + '.' +
-                #                  appinfo.APP_NAME + ':start']
-                }
+if os.path.isdir(PATH + 'doc'):
+    DATA_FILES += glob.glob(PATH + 'doc')
+
+BASE = None
+# GUI applications require a different base on Windows (the default is for a
+# console application).
+if sys.platform == 'win32':
+    BASE = 'Win32GUI'
+
+OPTIONS = dict(compressed=True,
+               # excludes=['macpath', 'PyQt4'],
+               # includes=['atexit', 'PySide.QtNetwork'],
+               include_files=DATA_FILES,
+               # append any extra module by extending the list below
+               # - 'contributed_modules+["lxml"]'
+               # packages=contributed_modules
+               )
+
+# add modules_dir to PYTHONPATH so all modules inside it are included
+# in cx-Freeze library
+sys.path.insert(1, appinfo.APP_NAME)
 
 setup(name=appinfo.APP_NAME,
       version=appinfo.APP_VERSION,
@@ -65,23 +81,13 @@ setup(name=appinfo.APP_NAME,
       classifiers=appinfo.CLASSIFIERS,
       keywords=appinfo.APP_KEYWORDS,
 
-      packages=find_packages(),
-      # packages=setuptools.find_packages(exclude=['docs',
-      #                                            'tests*']),
+      executables=[Executable(script=SCRIPT,
+                              base=BASE,
+                              compress=True,
+                              # icon=appinfo.APP_NAME + '.ico',
+                              targetName=TARGET_NAME,
+                              # copyDependentFiles=True
+                              )],
 
-      # use only if find_packages() doesn't work
-      # packages=PACKAGES,
-      # package_dir={'': appinfo.APP_NAME},
-
-      # to create an executable
-      entry_points=ENTRY_POINTS,
-
-      install_requires=REQUIREMENTS,
-
-      # used only if the package is not in PyPI, but exists as an
-      # egg, sdist format or as a single .py file
-      # see http://goo.gl/OgnjhO
-      # dependency_links = ['http://host.domain.local/dir/'],
-
-      include_package_data=True,  # use MANIFEST.in during install
+      options=dict(build_exe=OPTIONS),
       )
