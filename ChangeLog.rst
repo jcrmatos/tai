@@ -1,3 +1,8 @@
+0.0.45 2015-05-12 ::
+
+    Forgot to rebuild. :(
+
+
 0.0.44 2015-05-12 ::
 
     Changed .travis.yml to allow pypy to build with a special version of 
