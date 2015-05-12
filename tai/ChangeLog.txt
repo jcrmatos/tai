@@ -1,3 +1,8 @@
+0.0.39 2015-05-12 ::
+
+    Corrected error in .travis.yml.
+
+	
 0.0.38 2015-05-12 ::
 
     Corrected error in .travis.yml.
