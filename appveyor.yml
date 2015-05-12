@@ -19,7 +19,7 @@ environment:
       PYTHON_VERSION: "2.7.9"
       PYTHON_ARCH: "64"
       WINDOWS_SDK_VERSION: "v7.0"
-	  
+
     # commented until numpy build problem is solved
     #- PYTHON: "C:\\Python34-x64"
     #  PYTHON_VERSION: "3.4.3"
